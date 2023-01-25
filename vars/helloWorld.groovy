@@ -1,11 +1,12 @@
 import hudson.model.*
 
+
 // get current thread / Executor
 def thr = Thread.currentThread()
 // get current build
 def build = thr?.executable
 
-
+def call() {
 // get parameters
 def perfResult = "http://10.11.12.13:3000/dashboard/db/run-time-aggregate?from=%s&to=%s"
 def jmxMonitor = "http://10.11.12.13:3000/dashboard/db/jmx-monitor?from=%s&to=%s"
@@ -26,3 +27,4 @@ sb.append(String.format(link, perfResult, "Grafana Performance Result"))
 
 // set build description
 build.setDescription(sb.toString());
+}
