@@ -1,10 +1,6 @@
 import hudson.model.*
 
-
-// get current thread / Executor
-def thr = Thread.currentThread()
-// get current build
-def build = thr?.executable
+def build = Thread.currentThread().executable
 
 def call() {
 // get parameters
