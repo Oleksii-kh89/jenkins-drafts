@@ -7,16 +7,22 @@ def build = thr?.executable
 
 
 // get parameters
-def parameters = build?.actions.find{ it instanceof ParametersAction }?.parameters
-parameters.each {
-   println "parameter ${it.name}:"
-   println it.dump()
-   println "-" * 80
-}
+def perfResult = "http://10.11.12.13:3000/dashboard/db/run-time-aggregate?from=%s&to=%s"
+def jmxMonitor = "http://10.11.12.13:3000/dashboard/db/jmx-monitor?from=%s&to=%s"
 
-// ... or if you want the parameter by name ...
-def hardcoded_param = "FOOBAR"
-def resolver = build.buildVariableResolver
-def hardcoded_param_value = resolver.resolve(hardcoded_param)
+// get build start and end time
+def start = build.getStartTimeInMillis();
+def end = start + build.getExecutor().getElapsedTime();
 
-println "param ${hardcoded_param} value : ${hardcoded_param_value}" 
+// replace time
+perfResult = String.format(perfResult, start, end);
+jmxMonitor = String.format(jmxMonitor, start, end);
+
+//build the string to be added as description.
+def link = "<a href='%s'>%s</a><br/>";
+def sb = new StringBuilder();
+sb.append(String.format(link, perfResult, "Grafana Performance Result"))
+  .append(String.format(link, jmxMonitor, "Grafana JMX Result"));
+
+// set build description
+build.setDescription(sb.toString());
