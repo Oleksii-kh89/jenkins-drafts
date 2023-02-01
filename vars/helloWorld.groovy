@@ -1,26 +1,10 @@
-import hudson.model.*
-
-def build = Thread.currentThread().executable
-
 def call() {
-// get parameters
-def perfResult = "http://10.11.12.13:3000/dashboard/db/run-time-aggregate?from=%s&to=%s"
-def jmxMonitor = "http://10.11.12.13:3000/dashboard/db/jmx-monitor?from=%s&to=%s"
-
-// get build start and end time
-def start = build.getStartTimeInMillis();
-def end = start + build.getExecutor().getElapsedTime();
-
-// replace time
-perfResult = String.format(perfResult, start, end);
-jmxMonitor = String.format(jmxMonitor, start, end);
-
-//build the string to be added as description.
-def link = "<a href='%s'>%s</a><br/>";
-def sb = new StringBuilder();
-sb.append(String.format(link, perfResult, "Grafana Performance Result"))
-  .append(String.format(link, jmxMonitor, "Grafana JMX Result"));
-
-// set build description
-build.setDescription(sb.toString());
+    //sh "echo Hello World"
+  def chars = "abcdefghyjklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    def run_id = "Test_"
+                        for (int i = 0; i < 15; i++){
+                            q = chars.charAt(new Random().nextInt(chars.length()))
+                            run_id = run_id+q
+                        }
+                    buildDescription "${run_id}"
 }
