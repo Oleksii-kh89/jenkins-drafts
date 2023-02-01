@@ -6,5 +6,5 @@ def call() {
                             q = chars.charAt(new Random().nextInt(chars.length()))
                             run_id = run_id+q
                         }
-                    buildDescription "${VUSERS}, ${TEST_TYPE}, ${ENV}, ${SIMULATION}, ${run_id}"
+                    buildDescription "${run_id}"
 }
