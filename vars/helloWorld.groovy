@@ -1,7 +1,7 @@
-def setTime() {
+def setName() {
     def time = new Date().getTime();
-    this.testS = time - 300000;
+    this.name = time - 300000;
 }
-def getTime() {
-    return this.testS;
+def getName() {
+    return this.name;
 }
