@@ -1,5 +1,5 @@
 def call() {
-    def value = new Date().getTime()
-    this.name = value - 300000;
-    return this.name;
+    def time = new Date().getTime()
+    this.timeStart = time - 300000;
+    return this.Start;
 }
