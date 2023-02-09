@@ -1,6 +1,6 @@
-def call() {
-    def time = new Date().getTime()
-    testS = time - 300000
+def setName(value) {
+    this.name = value;
 }
-
-return this
+def getName() {
+    return this.name;
+}
