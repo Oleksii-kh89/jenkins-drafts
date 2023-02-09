@@ -1,4 +1,5 @@
-def setName(value) {
+def setName() {
+    def value = new Date().getTime()
     this.name = value - 300000;
 }
 def getName() {
