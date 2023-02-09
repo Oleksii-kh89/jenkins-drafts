@@ -3,7 +3,7 @@ def call() {
   def this.run_id = "Test_"
       for (int i = 0; i < 15; i++){
          q = chars.charAt(new Random().nextInt(chars.length()))
-         run_id = run_id+q
+         this.run_id = run_id+q
        }
   return this.run_id
 }
