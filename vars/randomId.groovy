@@ -3,6 +3,7 @@ def call() {
   def run_id = "Test_"
       for (int i = 0; i < 15; i++){
          q = chars.charAt(new Random().nextInt(chars.length()))
-         this.run_id = run_id+q
+         run_id = run_id+q
        }
+  return run_id
 }
